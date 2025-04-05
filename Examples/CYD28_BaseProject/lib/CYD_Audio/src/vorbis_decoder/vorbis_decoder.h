@@ -263,7 +263,7 @@ void     mdct_step7(int32_t *x, int n, int step);
 void     mdct_step8(int32_t *x, int n, int step);
 int32_t  vorbis_book_decodevv_add(codebook_t *book, int32_t **a, int32_t offset, uint8_t ch, int n, int point);
 int      vorbis_dsp_pcmout(int16_t *outBuff, int outBuffSize);
-void     mdct_unroll_lap(int n0, int n1, int lW, int W, int *in, int *right, const int *w0, const int *w1, short int *out,
+void     mdct_unroll_lap(int n0, int n1, int lW, int W, int32_t *in, int32_t *right, const int32_t *w0, const int32_t *w1, short int *out,
                      int step, int start, /* samples, this frame */
                      int end /* samples, this frame */);
 

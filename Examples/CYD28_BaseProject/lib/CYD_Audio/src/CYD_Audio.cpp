@@ -277,6 +277,7 @@ esp_err_t CYD_Audio::I2Sstart(uint8_t i2s_num) {
 esp_err_t CYD_Audio::I2Sstop(uint8_t i2s_num) {
     return i2s_stop((i2s_port_t) i2s_num);
 }
+#if     false
 //---------------------------------------------------------------------------------------------------------------------
 esp_err_t CYD_Audio::i2s_mclk_pin_select(const uint8_t pin) {
     // IDF >= 4.4 use setPinout(BCLK, LRC, DOUT, DIN, MCK) only, i2s_mclk_pin_select() is no longer needed
@@ -307,6 +308,7 @@ esp_err_t CYD_Audio::i2s_mclk_pin_select(const uint8_t pin) {
 
     return ESP_OK;
 }
+#endif  // false
 //---------------------------------------------------------------------------------------------------------------------
 CYD_Audio::~CYD_Audio() {
     //I2Sstop(m_i2s_num);
