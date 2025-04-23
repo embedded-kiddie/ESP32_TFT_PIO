@@ -1,7 +1,3 @@
-#include <Arduino.h>
-#include <SPI.h>
-#include <SD.h>
-#include <FS.h>
 #include "CYD28_audio.h"
 
 void setup() {
