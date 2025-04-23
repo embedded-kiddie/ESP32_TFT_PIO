@@ -4,26 +4,18 @@
 #include <FS.h>
 #include "CYD28_audio.h"
 
-// Digital I/O used
-#define SD_CS     SS    //  5
-#define SPI_MOSI  MOSI  // 23
-#define SPI_MISO  MISO  // 19
-#define SPI_SCK   SCK   // 18
-
 void setup() {
   Serial.begin(115200);
   while (millis() < 1000);
 
-  SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
-  SPI.setFrequency(10000000); // 1MHz --> 10MHz or more?
-  if (!SD.begin(SD_CS)) {
+  if (!SD.begin()) {
     Serial.println("Cannot begin SD.");
     while (1);
   }
 
   audioInit();
-  delay(100); // Wait until the task on Core 1 is ready to receive a command
-  audioConnecttoSD("/test.mp3");
+  delay(10); // Wait until the task on Core 1 is ready to receive a command
+  audioConnecttoSD("/sample.mp3");
 }
 
 void loop() {
