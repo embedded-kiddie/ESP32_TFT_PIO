@@ -2723,7 +2723,7 @@ void CYD_Audio::processLocalFile() {
     availableBytes = 16 * 1024; // set some large value
 
     availableBytes = min(availableBytes, (uint32_t)InBuff.writeSpace());
-    availableBytes = min(availableBytes, audiofile.size() - byteCounter);
+    availableBytes = min(availableBytes, (uint32_t)(audiofile.size() - byteCounter));
     if(m_contentlength){
         if(m_contentlength > getFilePos()) availableBytes = min(availableBytes, m_contentlength - getFilePos());
     }
