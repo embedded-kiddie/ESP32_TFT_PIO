@@ -189,8 +189,13 @@ void CYD_Audio::begin(bool internalDAC /* = false */, uint8_t channelEnabled /* 
     m_i2s_config.bits_per_sample      = I2S_BITS_PER_SAMPLE_16BIT;
     m_i2s_config.channel_format       = I2S_CHANNEL_FMT_RIGHT_LEFT;
     m_i2s_config.intr_alloc_flags     = ESP_INTR_FLAG_LEVEL1; // interrupt priority
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+    m_i2s_config.dma_desc_num         = 16;
+    m_i2s_config.dma_frame_num        = 512;
+#else
     m_i2s_config.dma_buf_count        = 16;
     m_i2s_config.dma_buf_len          = 512;
+#endif
     m_i2s_config.use_apll             = APLL_DISABLE; // must be disabled in V2.0.1-RC1
     m_i2s_config.tx_desc_auto_clear   = true;   // new in V1.0.1
     m_i2s_config.fixed_mclk           = I2S_PIN_NO_CHANGE;
@@ -337,7 +342,11 @@ void CYD_Audio::setDefaults() {
     vector_clear_and_shrink(m_playlistContent);
     m_hashQueue.clear(); m_hashQueue.shrink_to_fit(); // uint32_t vector
     client.stop();
+#if ESP_ARDUINO_VERSION_MAJOR >= 3
+    client.clear(); // release memory
+#else
     client.flush(); // release memory
+#endif
     clientsecure.stop();
     clientsecure.flush();
     _client = static_cast<WiFiClient*>(&client); /* default to *something* so that no NULL deref can happen */
