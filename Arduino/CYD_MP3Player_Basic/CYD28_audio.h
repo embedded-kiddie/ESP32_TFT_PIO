@@ -15,7 +15,7 @@ typedef enum : uint8_t
 	CONNECTTOHOST,
 	CONNECTTOSPEECH,
 	CONNECTTOSD,
-	AUDIO_STOP
+	AUDIO_STOP,
 }audioCmd_t;
 
 /**
