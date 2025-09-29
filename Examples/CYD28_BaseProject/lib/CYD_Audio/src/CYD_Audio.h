@@ -29,6 +29,7 @@
 #include <driver/i2s.h>
 
 #ifdef SDFATFS_USED
+#define DISABLE_FS_H_WARNING
 #include <SdFat.h>  // https://github.com/greiman/SdFat
 #else
 #include <SD.h>
